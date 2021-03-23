@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywy.ltxxzsxt.mapper.UserDao">
+  <resultMap id="BaseResultMap" type="com.ywy.ltxxzsxt.domain.Users">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="passWord" jdbcType="VARCHAR" property="password" />
+    <result column="auth" jdbcType="INTEGER" property="auth" />
+    <result column="partCode" jdbcType="VARCHAR" property="partcode" />
+    <result column="inTime" jdbcType="VARCHAR" property="intime" />
+    <result column="loginTime" jdbcType="VARCHAR" property="logintime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userName, `passWord`, auth, partCode, inTime, loginTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ywy.ltxxzsxt.domain.Users" useGeneratedKeys="true">
+    insert into user (userName, `passWord`, auth, 
+      partCode, inTime, loginTime
+      )
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{auth,jdbcType=INTEGER}, 
+      #{partcode,jdbcType=VARCHAR}, #{intime,jdbcType=VARCHAR}, #{logintime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ywy.ltxxzsxt.domain.Users" useGeneratedKeys="true">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="password != null">
+        `passWord`,
+      </if>
+      <if test="auth != null">
+        auth,
+      </if>
+      <if test="partcode != null">
+        partCode,
+      </if>
+      <if test="intime != null">
+        inTime,
+      </if>
+      <if test="logintime != null">
+        loginTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="auth != null">
+        #{auth,jdbcType=INTEGER},
+      </if>
+      <if test="partcode != null">
+        #{partcode,jdbcType=VARCHAR},
+      </if>
+      <if test="intime != null">
+        #{intime,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywy.ltxxzsxt.domain.Users">
+    update user
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `passWord` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="auth != null">
+        auth = #{auth,jdbcType=INTEGER},
+      </if>
+      <if test="partcode != null">
+        partCode = #{partcode,jdbcType=VARCHAR},
+      </if>
+      <if test="intime != null">
+        inTime = #{intime,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        loginTime = #{logintime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywy.ltxxzsxt.domain.Users">
+    update user
+    set userName = #{username,jdbcType=VARCHAR},
+      `passWord` = #{password,jdbcType=VARCHAR},
+      auth = #{auth,jdbcType=INTEGER},
+      partCode = #{partcode,jdbcType=VARCHAR},
+      inTime = #{intime,jdbcType=VARCHAR},
+      loginTime = #{logintime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

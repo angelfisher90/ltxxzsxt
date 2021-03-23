@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywy.ltxxzsxt.mapper.ZhengshuDao">
+  <resultMap id="BaseResultMap" type="com.ywy.ltxxzsxt.domain.Zhengshus">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="hdmc" jdbcType="VARCHAR" property="hdmc" />
+    <result column="hdxm" jdbcType="VARCHAR" property="hdxm" />
+    <result column="jbName" jdbcType="VARCHAR" property="jbname" />
+    <result column="jcName" jdbcType="VARCHAR" property="jcname" />
+    <result column="studentName" jdbcType="VARCHAR" property="studentname" />
+    <result column="zhidaoTeacher" jdbcType="VARCHAR" property="zhidaoteacher" />
+    <result column="zbName" jdbcType="VARCHAR" property="zbname" />
+    <result column="fazhengTime" jdbcType="VARCHAR" property="fazhengtime" />
+    <result column="clName" jdbcType="VARCHAR" property="clname" />
+    <result column="zsNum" jdbcType="VARCHAR" property="zsnum" />
+    <result column="picDizhi" jdbcType="VARCHAR" property="picdizhi" />
+    <result column="zsBanshi" jdbcType="VARCHAR" property="zsbanshi" />
+    <result column="beizhu" jdbcType="VARCHAR" property="beizhu" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, hdmc, hdxm, jbName, jcName, studentName, zhidaoTeacher, zbName, fazhengTime, 
+    clName, zsNum, picDizhi, zsBanshi, beizhu, userId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zhengshu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zhengshu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ywy.ltxxzsxt.domain.Zhengshus" useGeneratedKeys="true">
+    insert into zhengshu (hdmc, hdxm, jbName, 
+      jcName, studentName, zhidaoTeacher, 
+      zbName, fazhengTime, clName, 
+      zsNum, picDizhi, zsBanshi, 
+      beizhu, userId)
+    values (#{hdmc,jdbcType=VARCHAR}, #{hdxm,jdbcType=VARCHAR}, #{jbname,jdbcType=VARCHAR}, 
+      #{jcname,jdbcType=VARCHAR}, #{studentname,jdbcType=VARCHAR}, #{zhidaoteacher,jdbcType=VARCHAR}, 
+      #{zbname,jdbcType=VARCHAR}, #{fazhengtime,jdbcType=VARCHAR}, #{clname,jdbcType=VARCHAR}, 
+      #{zsnum,jdbcType=VARCHAR}, #{picdizhi,jdbcType=VARCHAR}, #{zsbanshi,jdbcType=VARCHAR}, 
+      #{beizhu,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ywy.ltxxzsxt.domain.Zhengshus" useGeneratedKeys="true">
+    insert into zhengshu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hdmc != null">
+        hdmc,
+      </if>
+      <if test="hdxm != null">
+        hdxm,
+      </if>
+      <if test="jbname != null">
+        jbName,
+      </if>
+      <if test="jcname != null">
+        jcName,
+      </if>
+      <if test="studentname != null">
+        studentName,
+      </if>
+      <if test="zhidaoteacher != null">
+        zhidaoTeacher,
+      </if>
+      <if test="zbname != null">
+        zbName,
+      </if>
+      <if test="fazhengtime != null">
+        fazhengTime,
+      </if>
+      <if test="clname != null">
+        clName,
+      </if>
+      <if test="zsnum != null">
+        zsNum,
+      </if>
+      <if test="picdizhi != null">
+        picDizhi,
+      </if>
+      <if test="zsbanshi != null">
+        zsBanshi,
+      </if>
+      <if test="beizhu != null">
+        beizhu,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hdmc != null">
+        #{hdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="hdxm != null">
+        #{hdxm,jdbcType=VARCHAR},
+      </if>
+      <if test="jbname != null">
+        #{jbname,jdbcType=VARCHAR},
+      </if>
+      <if test="jcname != null">
+        #{jcname,jdbcType=VARCHAR},
+      </if>
+      <if test="studentname != null">
+        #{studentname,jdbcType=VARCHAR},
+      </if>
+      <if test="zhidaoteacher != null">
+        #{zhidaoteacher,jdbcType=VARCHAR},
+      </if>
+      <if test="zbname != null">
+        #{zbname,jdbcType=VARCHAR},
+      </if>
+      <if test="fazhengtime != null">
+        #{fazhengtime,jdbcType=VARCHAR},
+      </if>
+      <if test="clname != null">
+        #{clname,jdbcType=VARCHAR},
+      </if>
+      <if test="zsnum != null">
+        #{zsnum,jdbcType=VARCHAR},
+      </if>
+      <if test="picdizhi != null">
+        #{picdizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="zsbanshi != null">
+        #{zsbanshi,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null">
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywy.ltxxzsxt.domain.Zhengshus">
+    update zhengshu
+    <set>
+      <if test="hdmc != null">
+        hdmc = #{hdmc,jdbcType=VARCHAR},
+      </if>
+      <if test="hdxm != null">
+        hdxm = #{hdxm,jdbcType=VARCHAR},
+      </if>
+      <if test="jbname != null">
+        jbName = #{jbname,jdbcType=VARCHAR},
+      </if>
+      <if test="jcname != null">
+        jcName = #{jcname,jdbcType=VARCHAR},
+      </if>
+      <if test="studentname != null">
+        studentName = #{studentname,jdbcType=VARCHAR},
+      </if>
+      <if test="zhidaoteacher != null">
+        zhidaoTeacher = #{zhidaoteacher,jdbcType=VARCHAR},
+      </if>
+      <if test="zbname != null">
+        zbName = #{zbname,jdbcType=VARCHAR},
+      </if>
+      <if test="fazhengtime != null">
+        fazhengTime = #{fazhengtime,jdbcType=VARCHAR},
+      </if>
+      <if test="clname != null">
+        clName = #{clname,jdbcType=VARCHAR},
+      </if>
+      <if test="zsnum != null">
+        zsNum = #{zsnum,jdbcType=VARCHAR},
+      </if>
+      <if test="picdizhi != null">
+        picDizhi = #{picdizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="zsbanshi != null">
+        zsBanshi = #{zsbanshi,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null">
+        beizhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywy.ltxxzsxt.domain.Zhengshus">
+    update zhengshu
+    set hdmc = #{hdmc,jdbcType=VARCHAR},
+      hdxm = #{hdxm,jdbcType=VARCHAR},
+      jbName = #{jbname,jdbcType=VARCHAR},
+      jcName = #{jcname,jdbcType=VARCHAR},
+      studentName = #{studentname,jdbcType=VARCHAR},
+      zhidaoTeacher = #{zhidaoteacher,jdbcType=VARCHAR},
+      zbName = #{zbname,jdbcType=VARCHAR},
+      fazhengTime = #{fazhengtime,jdbcType=VARCHAR},
+      clName = #{clname,jdbcType=VARCHAR},
+      zsNum = #{zsnum,jdbcType=VARCHAR},
+      picDizhi = #{picdizhi,jdbcType=VARCHAR},
+      zsBanshi = #{zsbanshi,jdbcType=VARCHAR},
+      beizhu = #{beizhu,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

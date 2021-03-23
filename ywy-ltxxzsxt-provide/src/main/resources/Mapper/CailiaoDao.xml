@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywy.ltxxzsxt.mapper.CailiaoDao">
+  <resultMap id="BaseResultMap" type="com.ywy.ltxxzsxt.domain.Cailiao">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="clName" jdbcType="VARCHAR" property="clname" />
+    <result column="clBeizhu" jdbcType="VARCHAR" property="clbeizhu" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, clName, clBeizhu
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cailiao
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cailiao
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ywy.ltxxzsxt.domain.Cailiao" useGeneratedKeys="true">
+    insert into cailiao (clName, clBeizhu)
+    values (#{clname,jdbcType=VARCHAR}, #{clbeizhu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ywy.ltxxzsxt.domain.Cailiao" useGeneratedKeys="true">
+    insert into cailiao
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="clname != null">
+        clName,
+      </if>
+      <if test="clbeizhu != null">
+        clBeizhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="clname != null">
+        #{clname,jdbcType=VARCHAR},
+      </if>
+      <if test="clbeizhu != null">
+        #{clbeizhu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywy.ltxxzsxt.domain.Cailiao">
+    update cailiao
+    <set>
+      <if test="clname != null">
+        clName = #{clname,jdbcType=VARCHAR},
+      </if>
+      <if test="clbeizhu != null">
+        clBeizhu = #{clbeizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywy.ltxxzsxt.domain.Cailiao">
+    update cailiao
+    set clName = #{clname,jdbcType=VARCHAR},
+      clBeizhu = #{clbeizhu,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
